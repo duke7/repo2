@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp' // ’Ç‰Á
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+configurations { // ’Ç‰Á
+    compileOnly
+}
+
+sourceSets { // ’Ç‰Á
+  main {
+    compileClasspath += configurations.compileOnly
+  }
+  test {
+    compileClasspath += configurations.compileOnly
+  }
+}
+
+eclipse { // ’Ç‰Á
+  classpath {
+    plusConfigurations += configurations.compileOnly
+  }
+}
+
+dependencies {
+    compile 'commons-collections:commons-collections:3.2.1'
+    compileOnly 'javax.servlet:javax.servlet-api:3.0.1' // ’Ç‰Á
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
